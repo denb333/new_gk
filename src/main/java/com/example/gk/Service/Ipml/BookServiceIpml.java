@@ -10,8 +10,6 @@ import com.example.gk.Repository.BookRepository;
 import com.example.gk.Service.BookService;
 
 
-
-
 @Service
 public class BookServiceIpml implements BookService {
 
@@ -22,18 +20,20 @@ public class BookServiceIpml implements BookService {
         this.bookRepository = bookRepository;
     }
 
-
+    @Override
     public List<Book> findAll() {
-     
         return bookRepository.findAll();
     }
 
-  
-    public Boolean save(Book Book) {
-        Book savedBook = bookRepository.save(Book);
-        if (savedBook != null) {
-            return true;
-        }
-        return false;
+    @Override
+    public Boolean save(Book book) {
+        Book savedBook = bookRepository.save(book);
+        System.out.println("Found Books: " + savedBook);
+        return savedBook != null;
+    }
+    
+    @Override
+    public List<Book> searchByKeyWord(String keyword){
+    	return bookRepository.findByNameContainingIgnoreCase(keyword);
     }
 }

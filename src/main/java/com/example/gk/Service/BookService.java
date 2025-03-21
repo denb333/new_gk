@@ -14,4 +14,6 @@ public interface BookService {
 
 	List<Book> findAll();
 
+	List<Book> searchByKeyWord(String keyword);
+
 }
