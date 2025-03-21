@@ -1,0 +1,14 @@
+
+services:
+  app:
+    image: gk:latest
+    container_name: gk
+    environment:
+      DATABASE_URL: ${DATABASE_URL}
+      PGUSER: ${PGUSER}
+      PGPASSWORD: ${PGPASSWORD}
+      PGHOST: ${PGHOST}
+      PGPORT: ${PGPORT}
+      PGDATABASE: ${PGDATABASE}
+    ports:
+      - "8882:8882"
