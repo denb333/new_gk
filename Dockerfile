@@ -1,17 +1,18 @@
-
 FROM openjdk:17-jdk-slim
 
 WORKDIR /app
 
 COPY . /app
 
-RUN ./mvnw package
-
 RUN chmod +x mvnw
+RUN ./mvnw clean install -DskipTests  # Đảm bảo Maven tạo JAR
 
+# Chạy lệnh sau nếu JAR nằm trong thư mục target
+RUN ls -la target
 
-ADD target/gk-springboot-new.jar gk-springboot-new.jar
-# Use the following line if you want to run the application with a specific profile
-ENTRYPOINT ["java", "-jar", "target/gk-springboot-new.jar"]
+# Copy JAR từ đúng thư mục
+COPY target/gk-springboot-new.jar gk-springboot-new.jar  
+
+ENTRYPOINT ["java", "-jar", "gk-springboot-new.jar"]
 
 EXPOSE 8882
