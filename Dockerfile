@@ -5,13 +5,14 @@ WORKDIR /app
 COPY . /app
 
 RUN chmod +x mvnw
-RUN ./mvnw clean install -DskipTests  # Đảm bảo Maven tạo JAR
+# Bước này sẽ tạo ra file JAR trong thư mục target với tên gk-springboot-new.jar
+RUN ./mvnw clean package -DskipTests
 
-# Chạy lệnh sau nếu JAR nằm trong thư mục target
-RUN ls -la target
+# Kiểm tra xem file JAR đã được tạo chưa
+RUN ls -la /app/target
 
-# Copy JAR từ đúng thư mục
-COPY target/gk-springboot-new.jar gk-springboot-new.jar  
+# Di chuyển file JAR đã tạo vào thư mục gốc của container
+RUN cp /app/target/gk-springboot-new.jar /app/
 
 ENTRYPOINT ["java", "-jar", "gk-springboot-new.jar"]
 
