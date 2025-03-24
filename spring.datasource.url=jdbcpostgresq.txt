@@ -1,4 +1,4 @@
-spring.datasource.url=jdbc:postgresql://localhost:5432/g12
+spring.datasource.url=jdbc:postgresql://localhost:5432/testdb
 spring.datasource.username=postgres
 spring.datasource.password=12345
 spring.datasource.driver-class-name=org.postgresql.Driver
